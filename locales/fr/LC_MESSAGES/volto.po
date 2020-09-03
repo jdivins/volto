@@ -542,6 +542,7 @@ msgstr "Voulez-vous vraiment supprimer l'utilisateur {username} ?"
 msgid "Do you really want to delete this item?"
 msgstr "Voulez-vous vraiment supprimer cet élément ?"
 
+#: components/manage/Multilingual/TranslationObject
 #: components/manage/Sidebar/Sidebar
 msgid "Document"
 msgstr "Document"
@@ -1767,6 +1768,10 @@ msgstr "Nombre total d'objets en mémoire de tous les caches"
 #: components/manage/Controlpanels/DatabaseInformation
 msgid "Total number of objects in the database"
 msgstr "Nombre total d'objets dans la base de données"
+
+#: components/manage/Add/Add
+msgid "Translate to"
+msgstr ""
 
 #: components/manage/Toolbar/Types
 msgid "Translate to {lang}"
