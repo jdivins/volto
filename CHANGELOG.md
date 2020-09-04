@@ -6,6 +6,8 @@
 
 ### Feature
 
+- Render form with vertical tabs, setting the property `verticalFormTabs` in config.js @giuliaghisini
+
 ### Bugfix
 
 - Use Plone `I18N_LANGUAGE` cookie instead of `language` @cekk
