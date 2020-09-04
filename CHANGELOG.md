@@ -15,6 +15,8 @@
 
 - Use Plone `I18N_LANGUAGE` cookie instead of `language` @cekk
 
+- enabled no-folderish CT to be translated @giuliaghisini
+ 
 ### Internal
 
 ## 7.12.0 (2020-09-04)
