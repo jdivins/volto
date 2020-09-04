@@ -125,6 +125,7 @@ class Form extends Component {
     isFormSelected: PropTypes.bool,
     onSelectForm: PropTypes.func,
     editable: PropTypes.bool,
+    onChangeFormData: PropTypes.func,
   };
 
   /**
@@ -241,6 +242,29 @@ class Form extends Component {
       return { ...state, selected: null };
     }
     return state;
+  }
+
+  /**
+   * Component will receive props
+   * @method componentWillReceiveProps
+   * @param {Object} nextProps Next properties
+   * @returns {undefined}
+   */
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.formData !== this.state.formData) {
+      this.setState({ formData: nextProps.formData });
+    }
+  }
+
+  async componentDidUpdate(prevProps, prevState) {
+    if (this.props.onChangeFormData) {
+      if (
+        JSON.stringify(prevState?.formData) !==
+        JSON.stringify(this.state.formData)
+      ) {
+        this.props.onChangeFormData(this.state.formData);
+      }
+    }
   }
 
   /**

@@ -8,6 +8,7 @@
 
 - Render form with vertical tabs, setting the property `verticalFormTabs` in config.js @giuliaghisini
 - create link in Draftjs using Objectbrowser @giuliaghisini
+- Added onChangeFormData prop to Form component @giuliaghisini
 
 ### Bugfix
 
