@@ -17,6 +17,8 @@
 
 - enabled no-folderish CT to be translated @giuliaghisini
  
+- Fix checkbox widget styles @nzambello
+
 ### Internal
 
 ## 7.12.0 (2020-09-04)
