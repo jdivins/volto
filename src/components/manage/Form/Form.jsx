@@ -931,6 +931,7 @@ class Form extends Component {
           method="post"
           onSubmit={this.onSubmit}
           error={keys(this.state.errors).length > 0}
+          className={settings.verticalFormTabs ? 'vertical-form' : ''}
         >
           <fieldset className="invisible" disabled={!this.props.editable}>
             <Segment.Group raised>
