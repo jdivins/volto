@@ -21,7 +21,10 @@ export function changeLanguage(language) {
     expires: new Date((2 ** 31 - 1) * 1000),
     path: '/',
   });
-
+  cookie.save('I18N_LANGUAGE', language, {
+    expires: new Date((2 ** 31 - 1) * 1000),
+    path: '/',
+  });
   return updateIntl({
     locale: language,
     messages: languageLocales[language],
