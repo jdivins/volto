@@ -1,8 +1,20 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
 import { getTranslationLocator, getContent } from '@plone/volto/actions';
 import { flattenToAppURL, changeLanguage } from '@plone/volto/helpers';
+import { settings } from '~/config';
+
+let locales = {};
+
+if (settings) {
+  settings.supportedLanguages.forEach((lang) => {
+    import('~/../locales/' + lang + '.json').then((locale) => {
+      locales = { ...locales, [lang]: locale.default };
+    });
+  });
+}
 
 const CreateTranslation = (props) => {
   const dispatch = useDispatch();
@@ -23,7 +35,7 @@ const CreateTranslation = (props) => {
     );
     // On unmount we dispatch the language change
     return () => {
-      dispatch(changeLanguage(language));
+      dispatch(changeLanguage(language, locales));
     };
     // On mount only
     /* eslint-disable react-hooks/exhaustive-deps */

@@ -6,16 +6,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
 import { useSelector, useDispatch } from 'react-redux';
 import cx from 'classnames';
 import { find, map } from 'lodash';
 import langmap from 'langmap';
 import { Helmet, changeLanguage } from '@plone/volto/helpers';
-
 import { settings } from '~/config';
-
 import { flattenToAppURL } from '@plone/volto/helpers';
+
+let locales = {};
+if (settings) {
+  settings.supportedLanguages.forEach((lang) => {
+    import('~/../locales/' + lang + '.json').then((locale) => {
+      locales = { ...locales, [lang]: locale.default };
+    });
+  });
+}
 
 const LanguageSelector = (props) => {
   const dispatch = useDispatch();
@@ -35,7 +41,7 @@ const LanguageSelector = (props) => {
             title={langmap[lang].nativeName}
             onClick={() => {
               props.onClickAction();
-              dispatch(changeLanguage(lang));
+              dispatch(changeLanguage(lang, locales));
             }}
             key={`language-selector-${lang}`}
           >

@@ -49,5 +49,5 @@ export Helmet from './Helmet/Helmet';
 export { difference } from '@plone/volto/helpers/Utils/Utils';
 export {
   changeLanguage,
-  languageLocales,
+  changeLanguageCookies,
 } from '@plone/volto/helpers/Language/Language';

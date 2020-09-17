@@ -155,7 +155,7 @@ server
             store.getState().content.data?.language?.token ||
             settings.defaultLanguage;
 
-          store.dispatch(changeLanguage(updatedLang));
+          store.dispatch(changeLanguage(updatedLang, locales));
 
           const context = {};
           resetServerContext();
