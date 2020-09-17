@@ -47,3 +47,7 @@ export AlignBlock from '@plone/volto/helpers/AlignBlock/AlignBlock';
 
 export Helmet from './Helmet/Helmet';
 export { difference } from '@plone/volto/helpers/Utils/Utils';
+export {
+  changeLanguage,
+  languageLocales,
+} from '@plone/volto/helpers/Language/Language';

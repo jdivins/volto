@@ -6,27 +6,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import cookie from 'react-cookie';
+
 import { useSelector, useDispatch } from 'react-redux';
 import cx from 'classnames';
 import { find, map } from 'lodash';
-import { updateIntl } from 'react-intl-redux';
 import langmap from 'langmap';
-import { Helmet } from '@plone/volto/helpers';
+import { Helmet, changeLanguage } from '@plone/volto/helpers';
 
 import { settings } from '~/config';
 
 import { flattenToAppURL } from '@plone/volto/helpers';
-
-let locales = {};
-
-if (settings) {
-  settings.supportedLanguages.forEach((lang) => {
-    import('~/../locales/' + lang + '.json').then((locale) => {
-      locales = { ...locales, [lang]: locale.default };
-    });
-  });
-}
 
 const LanguageSelector = (props) => {
   const dispatch = useDispatch();
@@ -34,20 +23,6 @@ const LanguageSelector = (props) => {
   const translations = useSelector(
     (state) => state.content.data?.['@components']?.translations?.items,
   );
-
-  function changeLanguage(language) {
-    cookie.save('lang', language, {
-      expires: new Date((2 ** 31 - 1) * 1000),
-      path: '/',
-    });
-
-    dispatch(
-      updateIntl({
-        locale: language,
-        messages: locales[language],
-      }),
-    );
-  }
 
   return settings.isMultilingual ? (
     <div className="language-selector">
@@ -60,7 +35,7 @@ const LanguageSelector = (props) => {
             title={langmap[lang].nativeName}
             onClick={() => {
               props.onClickAction();
-              changeLanguage(lang);
+              dispatch(changeLanguage(lang));
             }}
             key={`language-selector-${lang}`}
           >

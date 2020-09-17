@@ -5,15 +5,7 @@ import { updateIntl } from 'react-intl-redux';
 import cookie from 'react-cookie';
 import { settings } from '~/config';
 
-let locales = {};
-
-if (settings) {
-  settings.supportedLanguages.forEach((lang) => {
-    import('~/../locales/' + lang + '.json').then((locale) => {
-      locales = { ...locales, [lang]: locale.default };
-    });
-  });
-}
+import { languageLocales } from '@plone/volto/helpers';
 
 const MultilingualRedirector = (props) => {
   const { pathname, children } = props;
@@ -32,7 +24,7 @@ const MultilingualRedirector = (props) => {
       dispatch(
         updateIntl({
           locale: redirectToLanguage,
-          messages: locales[redirectToLanguage],
+          messages: languageLocales[redirectToLanguage],
         }),
       );
     }
