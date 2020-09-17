@@ -15,7 +15,6 @@ import { detect } from 'detect-browser';
 import path from 'path';
 import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
 import { createProxyMiddleware } from 'http-proxy-middleware';
-import { updateIntl } from 'react-intl-redux';
 import { resetServerContext } from 'react-beautiful-dnd';
 
 import routes from '~/routes';
@@ -27,6 +26,7 @@ import {
   persistAuthToken,
   generateSitemap,
   getAPIResourceWithAuth,
+  changeLanguage,
 } from '@plone/volto/helpers';
 
 import userSession from '@plone/volto/reducers/userSession/userSession';
@@ -154,12 +154,8 @@ server
           const updatedLang =
             store.getState().content.data?.language?.token ||
             settings.defaultLanguage;
-          store.dispatch(
-            updateIntl({
-              locale: updatedLang,
-              messages: locales[updatedLang],
-            }),
-          );
+
+          store.dispatch(changeLanguage(updatedLang));
 
           const context = {};
           resetServerContext();
